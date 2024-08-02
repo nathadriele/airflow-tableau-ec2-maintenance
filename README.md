@@ -57,11 +57,33 @@ airflow scheduler
 airflow webserver
 ```
 
+3. Trigger the DAG:
+The DAG is scheduled to run weekly on Mondays at 6 AM. You can also trigger it manually via the Airflow UI.
 
+### Code Explanation
 
+#### Configuration and Constants
 
+```py
+INSTANCE_IP = Variable.get("TABLEAU_SERVER_INSTANCE_IP")
+SSH_CONN_ID = 'tableau_ssh_conn'
+CLEANUP_COMMAND = "tsm maintenance cleanup"
+DISK_USAGE_COMMAND = "df /dev/nvme0n1p1 | tail -1 | awk '{print $5}'"
+SNS_ARN = Variable.get('SNS_TOPIC_ARN_TSM')
+```
 
+These variables configure the IP address, SSH connection, cleanup command, disk usage command, and SNS ARN for the DAG.
 
+### Default Arguments
+
+```py
+default_args = {
+    "owner": "airflow",
+    "depends_on_past": False,
+    "retries": 1,
+    "retry_delay": timedelta(minutes=5),
+}
+```
 
 
 
