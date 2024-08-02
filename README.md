@@ -58,7 +58,8 @@ airflow webserver
 ```
 
 3. Trigger the DAG:
-The DAG is scheduled to run weekly on Mondays at 6 AM. You can also trigger it manually via the Airflow UI.
+
+Trigger the DAG: The DAG is scheduled to run weekly on Mondays at 6 AM (for example). You can also trigger it manually via the Airflow UI.
 
 ### Code Explanation
 
