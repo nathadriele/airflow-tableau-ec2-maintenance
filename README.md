@@ -84,6 +84,16 @@ SNS_ARN = Variable.get('SNS_TOPIC_ARN_TSM')
 
 Defines the default arguments for the DAG tasks, such as the owner, retry behavior, and dependencies.
 
+#### Setting Dependencies
+
+```py
+check_disk_before_cleanup >> tsm_cleanup_task >> check_disk_after_cleanup
+tsm_cleanup_task >> send_sns_failure_task
+[check_disk_before_cleanup, tsm_cleanup_task, check_disk_after_cleanup] >> send_results_task
+```
+
+Defines the order in which tasks are executed and handles failure scenarios.
+
 #### Python Function send_sns_message
 
 This function pulls disk usage results before and after cleanup from XCom, decodes the results, and sends a notification via SNS.
@@ -120,16 +130,6 @@ Objective: Inform administrators about the success or failure of the cleanup tas
 Failure Notification:
 
 - **Task**: `send_sns_failure_task` is triggered if the cleanup task fails, sending a failure notification to the SNS topic.
-
-#### Setting Dependencies
-
-```py
-check_disk_before_cleanup >> tsm_cleanup_task >> check_disk_after_cleanup
-tsm_cleanup_task >> send_sns_failure_task
-[check_disk_before_cleanup, tsm_cleanup_task, check_disk_after_cleanup] >> send_results_task
-```
-
-Defines the order in which tasks are executed and handles failure scenarios.
 
 ### Result
 
