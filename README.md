@@ -111,25 +111,26 @@ Defines the DAG, including its schedule, description, and tags. It sets up the t
 5. `Send Results`
 
 ### SNS Workflow in the Code
-Before Cleanup:
 
-- **Task**: `check_disk_before_cleanup` executes an SSH command to check disk usage before the cleanup.
-Result: The result is stored and used later for comparison.
+**`Before Cleanup:`**
+
+**Task**: `check_disk_before_cleanup` executes an SSH command to check disk usage before the cleanup.
+**Result**: The result is stored and used later for comparison.
 Cleanup Execution:
 
-- **Task**: `tsm_cleanup_task` executes the cleanup command on the Tableau server.
-Result: The cleanup is performed to optimize the server's performance.
+**Task**: `tsm_cleanup_task` executes the cleanup command on the Tableau server.
+**Result**: The cleanup is performed to optimize the server's performance.
 After Cleanup:
 
-- **Task**: `check_disk_after_cleanup` executes an SSH command to check disk usage after the cleanup.
-Result: The result is compared with the disk usage before the cleanup.
+**Task**: `check_disk_after_cleanup` executes an SSH command to check disk usage after the cleanup.
+**Result**: The result is compared with the disk usage before the cleanup.
 Sending Results:
 
-- **Task**: `send_results_task` calls the send_sns_message function, which prepares and sends a message to the SNS topic with the cleanup results.
-Objective: Inform administrators about the success or failure of the cleanup task and its impact on disk usage.
-Failure Notification:
+**Task**: `send_results_task` calls the send_sns_message function, which prepares and sends a message to the SNS topic with the cleanup results.
+**Objective**: Inform administrators about the success or failure of the cleanup task and its impact on disk usage.
 
-- **Task**: `send_sns_failure_task` is triggered if the cleanup task fails, sending a failure notification to the SNS topic.
+- **Failure Notification**:
+**Task**: `send_sns_failure_task` is triggered if the cleanup task fails, sending a failure notification to the SNS topic.
 
 ### Result
 
