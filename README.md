@@ -74,11 +74,11 @@ DISK_USAGE_COMMAND = "df /dev/nvme0n1p1 | tail -1 | awk '{print $5}'"
 SNS_ARN = Variable.get('SNS_TOPIC_ARN_TSM')
 ```
 
-`INSTANCE_IP`: Holds the IP address of the Tableau server, used for connecting via SSH.
-`SSH_CONN_ID`: Contains the ID of the SSH connection configuration in Airflow.
-`CLEANUP_COMMAND`: The command to execute Tableau's maintenance cleanup.
-`DISK_USAGE_COMMAND`: Command to check disk usage on a specific partition.
-`SNS_ARN`: ARN of the SNS topic for sending notifications.
+- `INSTANCE_IP`: Holds the IP address of the Tableau server, used for connecting via SSH.
+- `SSH_CONN_ID`: Contains the ID of the SSH connection configuration in Airflow.
+- `CLEANUP_COMMAND`: The command to execute Tableau's maintenance cleanup.
+- `DISK_USAGE_COMMAND`: Command to check disk usage on a specific partition.
+- `SNS_ARN`: ARN of the SNS topic for sending notifications.
 
 #### Default Arguments
 
