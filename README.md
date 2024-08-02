@@ -1,4 +1,4 @@
-## Airflow Tableau EC2 Maintenance
+## Apache Airflow Tableau EC2 Maintenance
 
 ### Overview
 
@@ -116,15 +116,18 @@ Defines the DAG, including its schedule, description, and tags. It sets up the t
 
 **Task**: `check_disk_before_cleanup` executes an SSH command to check disk usage before the cleanup.
 **Result**: The result is stored and used later for comparison.
-Cleanup Execution:
+
+**`Cleanup Execution:`**
 
 **Task**: `tsm_cleanup_task` executes the cleanup command on the Tableau server.
 **Result**: The cleanup is performed to optimize the server's performance.
-After Cleanup:
+
+**`After Cleanup:`**
 
 **Task**: `check_disk_after_cleanup` executes an SSH command to check disk usage after the cleanup.
 **Result**: The result is compared with the disk usage before the cleanup.
-Sending Results:
+
+**`Sending Results:`**
 
 **Task**: `send_results_task` calls the send_sns_message function, which prepares and sends a message to the SNS topic with the cleanup results.
 **Objective**: Inform administrators about the success or failure of the cleanup task and its impact on disk usage.
@@ -145,5 +148,5 @@ Sending Results:
 This automation ensures regular maintenance of the Tableau server, leading to improved performance and reliability. By integrating Airflow and AWS SNS, the workflow enhances operational efficiency and provides timely notifications, contributing to proactive monitoring and management of data infrastructure.
 
 ### Additional Information
-Logging: Logs are available in the Airflow UI for each task, providing detailed insights into the execution.
-Customization: Modify the schedule or commands as needed to fit your specific maintenance requirements.
+`Logging`: Logs are available in the Airflow UI for each task, providing detailed insights into the execution.
+`Customization`: Modify the schedule or commands as needed to fit your specific maintenance requirements.
