@@ -57,7 +57,7 @@ with DAG(
     start_date=datetime(2023, 10, 10),
     max_active_runs=1,
     description="Performs tsm maintenance cleanup weekly",
-    schedule_interval="0 6 * * *", # Runs daily at 6 AM.
+    schedule_interval="0 6 * * *",
     tags=["tableau", "ec2"],
     catchup=False,
 ) as dag:
